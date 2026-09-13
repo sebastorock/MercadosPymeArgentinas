@@ -1,0 +1,105 @@
+{
+  "producto": {
+    "nombre": "yerba mate",
+    "hs": "0903"
+  },
+  "fecha_de_corrida_utc": "2026-09-13T19:47:47+00:00",
+  "prioridad": "crecimiento",
+  "metodologia": {
+    "pesos": {
+      "demanda_y_aceptacion": 55,
+      "acceso_comercial": 20,
+      "capacidad_de_compra": 15,
+      "riesgo_de_operar": 10
+    },
+    "normalizacion": "min-max dentro de los paises con datos validos; 50 si todos empatan",
+    "cobertura_minima": 0.7
+  },
+  "ranking": [
+    {
+      "pais_iso3": "USA",
+      "pais": "USA",
+      "estado": "REVISAR_DATOS",
+      "puntaje_total": 100.0,
+      "puntajes_dimension": {
+        "demanda_y_aceptacion": null,
+        "acceso_comercial": null,
+        "capacidad_de_compra": 100.0,
+        "riesgo_de_operar": 100.0
+      },
+      "evidencia": [
+        {
+          "metrica": "pbi_per_capita_usd",
+          "valor": 90026.516301,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "poblacion",
+          "valor": 341784857.0,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "inflacion_pct",
+          "valor": 2.949525,
+          "puntaje_normalizado": 100.0
+        }
+      ],
+      "alertas": [
+        "Faltan datos criticos de comercio: importacion_total_per_capita_usd, importacion_desde_argentina_per_capita_usd",
+        "Cobertura de datos insuficiente (20%); minimo requerido: 70%."
+      ],
+      "confianza_datos": 0.2,
+      "posicion": 1
+    },
+    {
+      "pais_iso3": "JPN",
+      "pais": "JPN",
+      "estado": "REVISAR_DATOS",
+      "puntaje_total": 34.38,
+      "puntajes_dimension": {
+        "demanda_y_aceptacion": 50.0,
+        "acceso_comercial": null,
+        "capacidad_de_compra": 0.0,
+        "riesgo_de_operar": 0.0
+      },
+      "evidencia": [
+        {
+          "metrica": "importacion_total_per_capita_usd",
+          "valor": 0.001277,
+          "puntaje_normalizado": 50.0
+        },
+        {
+          "metrica": "pbi_per_capita_usd",
+          "valor": 35951.044955,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "poblacion",
+          "valor": 123366734.0,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "inflacion_pct",
+          "valor": 3.17253,
+          "puntaje_normalizado": 0.0
+        }
+      ],
+      "alertas": [
+        "Faltan datos criticos de comercio: importacion_desde_argentina_per_capita_usd",
+        "Cobertura de datos insuficiente (32%); minimo requerido: 70%."
+      ],
+      "confianza_datos": 0.32,
+      "posicion": 2
+    }
+  ],
+  "recomendacion_humana_requerida": true,
+  "limitaciones": [
+    "Las importaciones observadas no prueban preferencia del consumidor ni rentabilidad.",
+    "Los datos de comercio pueden tener rezago de publicacion.",
+    "El ranking prioriza investigacion comercial; no autoriza exportaciones ni inversiones."
+  ],
+  "fuentes": [
+    "World Bank Indicators API v2",
+    "UN Comtrade Preview API"
+  ]
+}

@@ -1,0 +1,124 @@
+[
+  {
+    "page": 1,
+    "pages": 1,
+    "per_page": 100,
+    "total": 7,
+    "sourceid": "2",
+    "lastupdated": "2026-07-13"
+  },
+  [
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2025",
+      "value": 19859921,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2024",
+      "value": 19764771,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2023",
+      "value": 19658835,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2022",
+      "value": 19553036,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2021",
+      "value": 19456334,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2020",
+      "value": 19370624,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    },
+    {
+      "indicator": {
+        "id": "SP.POP.TOTL",
+        "value": "Population, total"
+      },
+      "country": {
+        "id": "CL",
+        "value": "Chile"
+      },
+      "countryiso3code": "CHL",
+      "date": "2019",
+      "value": 19197744,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 0
+    }
+  ]
+]

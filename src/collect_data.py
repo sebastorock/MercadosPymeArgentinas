@@ -14,6 +14,7 @@ import gzip
 import json
 import time
 import urllib.parse
+import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,22 +28,38 @@ WB_INDICATORS = {
     "estabilidad_politica": "PV.EST",
     "calidad_regulatoria": "GE.REG.EST",
 }
-COMTRADE_PERIODS = (2022, 2023, 2024)
+COMTRADE_PERIODS = (2024,)
 COMTRADE_ARGENTINA_PARTNER = 32
 
 
 def request_json(url: str) -> Any:
     request = urllib.request.Request(url, headers={"User-Agent": "MercadoRaiz/1.0 (academic project)"})
-    with urllib.request.urlopen(request, timeout=45) as response:  # noqa: S310 - public fixed endpoints
-        payload = response.read()
-        if response.headers.get("Content-Encoding") == "gzip":
-            payload = gzip.decompress(payload)
-    return json.loads(payload.decode("utf-8-sig"))
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(request, timeout=12) as response:  # noqa: S310 - public fixed endpoints
+                payload = response.read()
+                if response.headers.get("Content-Encoding") == "gzip":
+                    payload = gzip.decompress(payload)
+            return json.loads(payload.decode("utf-8-sig"))
+        except urllib.error.HTTPError as error:
+            if error.code != 429 or attempt == 3:
+                raise
+            time.sleep(2 ** attempt)
+    raise RuntimeError("Reintentos agotados")
 
 
 def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def cached_json(path: Path, url: str) -> Any:
+    """Reutiliza evidencia cruda ya guardada; evita repetir consultas lentas."""
+    if path.exists():
+        return json.loads(path.read_text(encoding="utf-8"))
+    data = request_json(url)
+    write_json(path, data)
+    return data
 
 
 def latest_world_bank_value(data: Any) -> tuple[float | None, str | None]:
@@ -54,14 +71,17 @@ def latest_world_bank_value(data: Any) -> tuple[float | None, str | None]:
     return None, None
 
 
-def comtrade_value(data: Any) -> float | None:
+def comtrade_values(data: Any) -> dict[int, float]:
     rows = data.get("data", []) if isinstance(data, dict) else []
-    if not rows:
-        return None
-    # primaryValue is the documented primary current-value field. The fallback
-    # tolerates small schema changes in the Preview API.
-    value = rows[0].get("primaryValue", rows[0].get("primary_value"))
-    return float(value) if value is not None else None
+    values: dict[int, float] = {}
+    for row in rows:
+        if row.get("partner2Code") != 0 or row.get("customsCode") != "C00" or row.get("motCode") != 0:
+            continue
+        value = row.get("primaryValue", row.get("primary_value"))
+        year = row.get("refYear")
+        if value is not None and year is not None:
+            values[int(year)] = float(value)
+    return values
 
 
 def cagr_percent(series: list[float | None]) -> float | None:
@@ -81,8 +101,10 @@ def get_comtrade_codes() -> dict[str, int]:
     records = data.get("results", data) if isinstance(data, dict) else data
     output = {}
     for record in records:
-        iso3 = record.get("ISO3") or record.get("iso3")
-        code = record.get("id") or record.get("areaCode") or record.get("partnerCode")
+        # La tabla oficial usa PascalCase; se mantienen alternativas para
+        # tolerar una futura variante del endpoint.
+        iso3 = record.get("PartnerCodeIsoAlpha3") or record.get("ISO3") or record.get("iso3")
+        code = record.get("PartnerCode") or record.get("id") or record.get("areaCode") or record.get("partnerCode")
         if iso3 and code is not None:
             output[str(iso3).upper()] = int(code)
     return output
@@ -92,16 +114,16 @@ def collect_market(iso3: str, numeric_code: int, raw_dir: Path) -> dict[str, Any
     market: dict[str, Any] = {"pais_iso3": iso3, "pais": iso3, "fuentes": {}}
     for field, indicator in WB_INDICATORS.items():
         url = f"https://api.worldbank.org/v2/country/{iso3}/indicator/{indicator}?format=json&date=2019:2025&per_page=100"
-        data = request_json(url)
-        write_json(raw_dir / f"world_bank_{iso3}_{indicator}.json", data)
+        data = cached_json(raw_dir / f"world_bank_{iso3}_{indicator}.json", url)
         value, year = latest_world_bank_value(data)
         market[field] = value
         market["fuentes"][field] = {"fuente": "World Bank Indicators API v2", "indicador": indicator, "ano": year, "url": url}
 
     totals: list[float | None] = []
     argentina: list[float | None] = []
-    for period in COMTRADE_PERIODS:
-        for partner, target in ((0, totals), (COMTRADE_ARGENTINA_PARTNER, argentina)):
+    for partner, target in ((0, totals), (COMTRADE_ARGENTINA_PARTNER, argentina)):
+        values: dict[int, float] = {}
+        for period in COMTRADE_PERIODS:
             parameters = urllib.parse.urlencode({
                 "period": period,
                 "reporterCode": numeric_code,
@@ -111,11 +133,12 @@ def collect_market(iso3: str, numeric_code: int, raw_dir: Path) -> dict[str, Any
                 "maxRecords": 20,
             })
             url = f"https://comtradeapi.un.org/public/v1/preview/C/A/HS?{parameters}"
-            data = request_json(url)
             suffix = "mundo" if partner == 0 else "argentina"
-            write_json(raw_dir / f"comtrade_{iso3}_{period}_{suffix}.json", data)
-            target.append(comtrade_value(data))
-            time.sleep(0.2)
+            data = cached_json(raw_dir / f"comtrade_{iso3}_{period}_{suffix}.json", url)
+            by_year = comtrade_values(data)
+            values.update(by_year)
+            time.sleep(0.3)
+        target.extend(values.get(period) for period in COMTRADE_PERIODS)
     market["importacion_total_usd"] = totals[-1]
     market["importacion_desde_argentina_usd"] = argentina[-1]
     market["crecimiento_importacion_3y_pct"] = cagr_percent(totals)
@@ -139,10 +162,10 @@ def main() -> None:
     if not 2 <= len(countries) <= 12 or len(set(countries)) != len(countries):
         raise SystemExit("Indique entre 2 y 12 codigos ISO3 distintos.")
     output = Path(args.output)
-    if output.exists():
-        raise SystemExit(f"La corrida ya existe: {output}")
+    if output.exists() and (output / "salida.json").exists():
+        raise SystemExit(f"La corrida ya esta completa: {output}")
     raw_dir = output / "raw"
-    output.mkdir(parents=True)
+    output.mkdir(parents=True, exist_ok=True)
     codes = get_comtrade_codes()
     absent = [country for country in countries if country not in codes]
     if absent:
@@ -158,6 +181,14 @@ def main() -> None:
         ],
     }
     write_json(output / "entrada_ranking.json", payload)
+    from ranking import build_output
+    write_json(output / "salida.json", build_output(payload))
+    index_path = output.parent / "index.json"
+    index = json.loads(index_path.read_text(encoding="utf-8")) if index_path.exists() else {"corridas": []}
+    index["corridas"] = [item for item in index.get("corridas", []) if item.get("id") != output.name]
+    index["corridas"].append({"id": output.name, "fecha": payload["fecha_de_corrida_utc"], "prioridad": args.priority, "archivo": f"{output.name}/salida.json"})
+    index["corridas"].sort(key=lambda item: item["fecha"])
+    write_json(index_path, index)
     print(f"Datos guardados en {output}")
 
 

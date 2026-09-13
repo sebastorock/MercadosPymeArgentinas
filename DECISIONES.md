@@ -44,6 +44,12 @@ Se consultaron con exito la World Bank Indicators API v2 y el catalogo de indica
 
 **Motivo:** el orden de los paises debe poder reconstruirse sin depender de una respuesta probabilistica. El codigo normaliza cada metrica min-max dentro de la corrida, invierte las variables negativas (arancel e inflacion), conserva la evidencia usada y aplica una cobertura minima de 70%. El modelo, cuando se incorpore, solo explicara el resultado estructurado y no podra modificar los puntajes.
 
+## 2026-09-13 - Primera corrida: fallo de adaptacion de codigos
+
+La primera ejecucion con ESP, USA, DEU, JPN, BRA, CHL, MEX y URY se detuvo antes de descargar indicadores porque el adaptador esperaba el campo `ISO3` en la tabla de paises de UN Comtrade. La respuesta real usa `PartnerCodeIsoAlpha3` y `PartnerCode`.
+
+**Decision:** corregir el adaptador para usar los nombres de campo oficiales y conservar alternativas defensivas. La carpeta de esta ejecucion fallida quedo vacia; no se la considera evidencia de una corrida real porque no hubo consultas de mercado ni salida de ranking.
+
 ## 2026-09-13 - Gobierno
 
 El agente opera en L0-L1 para descarga, calculo y reporte. La decision de avanzar comercialmente pertenece a una persona responsable en L2-L4. El sistema no envia mensajes, contrata, cotiza, modifica bases de datos externas ni ejecuta transacciones.

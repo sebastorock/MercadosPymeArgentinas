@@ -1,0 +1,124 @@
+{
+  "fecha_de_corrida_utc": "2026-09-13T19:47:47+00:00",
+  "prioridad": "crecimiento",
+  "mercados": [
+    {
+      "pais_iso3": "USA",
+      "pais": "USA",
+      "fuentes": {
+        "pbi_per_capita_usd": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "NY.GDP.PCAP.CD",
+          "ano": "2025",
+          "url": "https://api.worldbank.org/v2/country/USA/indicator/NY.GDP.PCAP.CD?format=json&date=2019:2025&per_page=100"
+        },
+        "poblacion": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "SP.POP.TOTL",
+          "ano": "2025",
+          "url": "https://api.worldbank.org/v2/country/USA/indicator/SP.POP.TOTL?format=json&date=2019:2025&per_page=100"
+        },
+        "inflacion_pct": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "FP.CPI.TOTL.ZG",
+          "ano": "2024",
+          "url": "https://api.worldbank.org/v2/country/USA/indicator/FP.CPI.TOTL.ZG?format=json&date=2019:2025&per_page=100"
+        },
+        "estabilidad_politica": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "PV.EST",
+          "ano": null,
+          "url": "https://api.worldbank.org/v2/country/USA/indicator/PV.EST?format=json&date=2019:2025&per_page=100"
+        },
+        "calidad_regulatoria": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "GE.REG.EST",
+          "ano": null,
+          "url": "https://api.worldbank.org/v2/country/USA/indicator/GE.REG.EST?format=json&date=2019:2025&per_page=100"
+        },
+        "comercio": {
+          "fuente": "UN Comtrade Preview API",
+          "hs": "0903",
+          "periodos": [
+            2024
+          ],
+          "importacion_total_usd_por_ano": [
+            null
+          ],
+          "importacion_desde_argentina_usd_por_ano": [
+            null
+          ]
+        }
+      },
+      "pbi_per_capita_usd": 90026.5163005744,
+      "poblacion": 341784857.0,
+      "inflacion_pct": 2.94952520485207,
+      "estabilidad_politica": null,
+      "calidad_regulatoria": null,
+      "importacion_total_usd": null,
+      "importacion_desde_argentina_usd": null,
+      "crecimiento_importacion_3y_pct": null
+    },
+    {
+      "pais_iso3": "JPN",
+      "pais": "JPN",
+      "fuentes": {
+        "pbi_per_capita_usd": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "NY.GDP.PCAP.CD",
+          "ano": "2025",
+          "url": "https://api.worldbank.org/v2/country/JPN/indicator/NY.GDP.PCAP.CD?format=json&date=2019:2025&per_page=100"
+        },
+        "poblacion": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "SP.POP.TOTL",
+          "ano": "2025",
+          "url": "https://api.worldbank.org/v2/country/JPN/indicator/SP.POP.TOTL?format=json&date=2019:2025&per_page=100"
+        },
+        "inflacion_pct": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "FP.CPI.TOTL.ZG",
+          "ano": "2025",
+          "url": "https://api.worldbank.org/v2/country/JPN/indicator/FP.CPI.TOTL.ZG?format=json&date=2019:2025&per_page=100"
+        },
+        "estabilidad_politica": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "PV.EST",
+          "ano": null,
+          "url": "https://api.worldbank.org/v2/country/JPN/indicator/PV.EST?format=json&date=2019:2025&per_page=100"
+        },
+        "calidad_regulatoria": {
+          "fuente": "World Bank Indicators API v2",
+          "indicador": "GE.REG.EST",
+          "ano": null,
+          "url": "https://api.worldbank.org/v2/country/JPN/indicator/GE.REG.EST?format=json&date=2019:2025&per_page=100"
+        },
+        "comercio": {
+          "fuente": "UN Comtrade Preview API",
+          "hs": "0903",
+          "periodos": [
+            2024
+          ],
+          "importacion_total_usd_por_ano": [
+            157478.902
+          ],
+          "importacion_desde_argentina_usd_por_ano": [
+            null
+          ]
+        }
+      },
+      "pbi_per_capita_usd": 35951.0449549304,
+      "poblacion": 123366734.0,
+      "inflacion_pct": 3.17253034260248,
+      "estabilidad_politica": null,
+      "calidad_regulatoria": null,
+      "importacion_total_usd": 157478.902,
+      "importacion_desde_argentina_usd": null,
+      "crecimiento_importacion_3y_pct": null
+    }
+  ],
+  "fuentes": [
+    "World Bank Indicators API v2",
+    "UN Comtrade Preview API"
+  ]
+}

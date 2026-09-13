@@ -1,0 +1,128 @@
+{
+  "producto": {
+    "nombre": "yerba mate",
+    "hs": "0903"
+  },
+  "fecha_de_corrida_utc": "2026-09-13T19:44:29+00:00",
+  "prioridad": "equilibrada",
+  "metodologia": {
+    "pesos": {
+      "demanda_y_aceptacion": 45,
+      "acceso_comercial": 25,
+      "capacidad_de_compra": 15,
+      "riesgo_de_operar": 15
+    },
+    "normalizacion": "min-max dentro de los paises con datos validos; 50 si todos empatan",
+    "cobertura_minima": 0.7
+  },
+  "ranking": [
+    {
+      "pais_iso3": "ESP",
+      "pais": "ESP",
+      "estado": "REVISAR_DATOS",
+      "puntaje_total": 60.0,
+      "puntajes_dimension": {
+        "demanda_y_aceptacion": 100.0,
+        "acceso_comercial": null,
+        "capacidad_de_compra": 0.0,
+        "riesgo_de_operar": 0.0
+      },
+      "evidencia": [
+        {
+          "metrica": "importacion_total_per_capita_usd",
+          "valor": 0.252557,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "importacion_desde_argentina_per_capita_usd",
+          "valor": 0.115142,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "crecimiento_importacion_3y_pct",
+          "valor": 18.982645,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "pbi_per_capita_usd",
+          "valor": 38627.247215,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "poblacion",
+          "valor": 49355143.0,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "inflacion_pct",
+          "valor": 2.699933,
+          "puntaje_normalizado": 0.0
+        }
+      ],
+      "alertas": [
+        "Cobertura de datos insuficiente (65%); minimo requerido: 70%."
+      ],
+      "confianza_datos": 0.65,
+      "posicion": 1
+    },
+    {
+      "pais_iso3": "DEU",
+      "pais": "DEU",
+      "estado": "REVISAR_DATOS",
+      "puntaje_total": 40.0,
+      "puntajes_dimension": {
+        "demanda_y_aceptacion": 0.0,
+        "acceso_comercial": null,
+        "capacidad_de_compra": 100.0,
+        "riesgo_de_operar": 100.0
+      },
+      "evidencia": [
+        {
+          "metrica": "importacion_total_per_capita_usd",
+          "valor": 0.085321,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "importacion_desde_argentina_per_capita_usd",
+          "valor": 0.020099,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "crecimiento_importacion_3y_pct",
+          "valor": 5.373299,
+          "puntaje_normalizado": 0.0
+        },
+        {
+          "metrica": "pbi_per_capita_usd",
+          "valor": 60496.435082,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "poblacion",
+          "valor": 83491249.0,
+          "puntaje_normalizado": 100.0
+        },
+        {
+          "metrica": "inflacion_pct",
+          "valor": 2.171788,
+          "puntaje_normalizado": 100.0
+        }
+      ],
+      "alertas": [
+        "Cobertura de datos insuficiente (65%); minimo requerido: 70%."
+      ],
+      "confianza_datos": 0.65,
+      "posicion": 2
+    }
+  ],
+  "recomendacion_humana_requerida": true,
+  "limitaciones": [
+    "Las importaciones observadas no prueban preferencia del consumidor ni rentabilidad.",
+    "Los datos de comercio pueden tener rezago de publicacion.",
+    "El ranking prioriza investigacion comercial; no autoriza exportaciones ni inversiones."
+  ],
+  "fuentes": [
+    "World Bank Indicators API v2",
+    "UN Comtrade Preview API"
+  ]
+}

@@ -20,7 +20,7 @@ DIMENSIONS = {
         "metrics": {
             "importacion_total_per_capita_usd": {"weight": 12, "higher_is_better": True, "required": True},
             "importacion_desde_argentina_per_capita_usd": {"weight": 18, "higher_is_better": True, "required": True},
-            "crecimiento_importacion_3y_pct": {"weight": 15, "higher_is_better": True, "required": True},
+            "crecimiento_importacion_3y_pct": {"weight": 15, "higher_is_better": True, "required": False},
         },
     },
     "acceso_comercial": {
@@ -44,6 +44,13 @@ DIMENSIONS = {
             "calidad_regulatoria": {"weight": 5, "higher_is_better": True, "required": False},
         },
     },
+}
+
+PRIORITY_WEIGHTS = {
+    "equilibrada": [45, 25, 15, 15],
+    "crecimiento": [55, 20, 15, 10],
+    "bajo_riesgo": [30, 20, 15, 35],
+    "acceso_comercial": [35, 40, 15, 10],
 }
 
 
@@ -161,10 +168,14 @@ def build_output(payload: dict[str, Any]) -> dict[str, Any]:
     markets = payload.get("mercados", [])
     if not isinstance(markets, list) or len(markets) < 2:
         raise ValueError("La entrada debe incluir al menos dos mercados en 'mercados'.")
+    priority = payload.get("prioridad", "equilibrada")
+    weights = PRIORITY_WEIGHTS.get(priority, PRIORITY_WEIGHTS["equilibrada"])
+    for spec, weight in zip(DIMENSIONS.values(), weights):
+        spec["weight"] = weight
     result = {
         "producto": {"nombre": "yerba mate", "hs": "0903"},
         "fecha_de_corrida_utc": payload.get("fecha_de_corrida_utc") or datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "prioridad": payload.get("prioridad", "equilibrada"),
+        "prioridad": priority,
         "metodologia": {
             "pesos": {name: spec["weight"] for name, spec in DIMENSIONS.items()},
             "normalizacion": "min-max dentro de los paises con datos validos; 50 si todos empatan",

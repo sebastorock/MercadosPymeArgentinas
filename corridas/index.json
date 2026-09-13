@@ -1,0 +1,34 @@
+{
+  "corridas": [
+    {
+      "id": "2026-09-13-01-equilibrada",
+      "fecha": "2026-09-13T19:44:29+00:00",
+      "prioridad": "equilibrada",
+      "archivo": "2026-09-13-01-equilibrada/salida.json"
+    },
+    {
+      "id": "2026-09-13-equilibrada",
+      "fecha": "2026-09-13T19:46:01+00:00",
+      "prioridad": "equilibrada",
+      "archivo": "2026-09-13-equilibrada/salida.json"
+    },
+    {
+      "id": "2026-09-13-03-crecimiento",
+      "fecha": "2026-09-13T19:47:47+00:00",
+      "prioridad": "crecimiento",
+      "archivo": "2026-09-13-03-crecimiento/salida.json"
+    },
+    {
+      "id": "2026-09-13-04-bajo-riesgo",
+      "fecha": "2026-09-13T19:48:15+00:00",
+      "prioridad": "bajo_riesgo",
+      "archivo": "2026-09-13-04-bajo-riesgo/salida.json"
+    },
+    {
+      "id": "2026-09-13-05-acceso-comercial",
+      "fecha": "2026-09-13T19:48:40+00:00",
+      "prioridad": "acceso_comercial",
+      "archivo": "2026-09-13-05-acceso-comercial/salida.json"
+    }
+  ]
+}

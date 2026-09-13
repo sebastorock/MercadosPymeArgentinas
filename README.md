@@ -28,7 +28,7 @@ El puntaje total se expresa entre 0 y 100 y es una suma ponderada de cuatro dime
 
 | Dimension | Peso | Senales iniciales |
 |---|---:|---|
-| Demanda y aceptacion | 45% | importaciones totales de HS 0903, importaciones desde Argentina, crecimiento de 3 anos |
+| Demanda y aceptacion | 45% | importaciones totales de HS 0903, importaciones desde Argentina, crecimiento cuando haya serie disponible |
 | Acceso comercial | 25% | arancel aplicable a Argentina; si no existe, se alerta y se reduce la confianza |
 | Capacidad de compra | 15% | PBI per capita y poblacion |
 | Riesgo de operar | 15% | inflacion, estabilidad politica y calidad regulatoria |
@@ -71,4 +71,4 @@ La recoleccion y el calculo son deterministas y no usan tokens. La explicacion r
 
 ## Estado
 
-En diseño. El contrato v1 y los criterios de ranking estan definidos; faltan implementar conectores, validar disponibilidad de indicadores y ejecutar tres corridas reales.
+Implementado. Hay cinco corridas reproducibles en `corridas/`; el dashboard local permite explorarlas y simular pesos y mercados.

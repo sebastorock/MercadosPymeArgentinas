@@ -1,0 +1,124 @@
+[
+  {
+    "page": 1,
+    "pages": 1,
+    "per_page": 100,
+    "total": 7,
+    "sourceid": "2",
+    "lastupdated": "2026-07-13"
+  },
+  [
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2025",
+      "value": 4.65032720433324,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2024",
+      "value": 4.84914366613156,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2023",
+      "value": 5.86910359896119,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2022",
+      "value": 9.10437983075437,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2021",
+      "value": 7.74791402314762,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2020",
+      "value": 9.75640636078194,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": {
+        "id": "UY",
+        "value": "Uruguay"
+      },
+      "countryiso3code": "URY",
+      "date": "2019",
+      "value": 7.88198870879619,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    }
+  ]
+]
