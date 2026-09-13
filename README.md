@@ -69,6 +69,8 @@ El comando y las dependencias se documentaran antes de generar las corridas de e
 
 La recoleccion y el calculo son deterministas y no usan tokens. La explicacion redactada por un modelo se separara del calculo: se usara un modelo pequeno y se registraran tokens de entrada y salida por corrida. La estimacion semanal/anual se completara con los datos de las tres corridas reales.
 
+La capa de explicacion esta gobernada por los prompts incluidos: recibe solo una salida JSON verificada, no altera puntajes y debe marcar las alertas de cobertura. El calculo y las evidencias de las cinco corridas quedan disponibles aun si esa capa no esta activa.
+
 ## Estado
 
 Implementado. Hay cinco corridas reproducibles en `corridas/`; el dashboard local permite explorarlas y simular pesos y mercados.
